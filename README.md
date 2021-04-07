@@ -8,7 +8,17 @@
 If you don't interact with the window, a new poem will be displayed after a while. You can choose to save it for later, or copy it to your clipboard. 
 For more info on GNOME software and extensions you can check out https://developer.gnome.org/. 
 
+# Installation
+To compile the source code, use
+```bash
+gcc 300Tang.c `pkg-config --cflags --libs gtk+-3.0` -o 300Tang
+```
+and then run it with
+```bash
+./300Tang
 
+```
+You can then change your startup application settings to have it start automatically next time.
 
 # License
 MIT. For more information check the LICENSE file.
