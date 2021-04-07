@@ -11,14 +11,16 @@ activate (GtkApplication *app,
 {
   GtkWidget *window;
   GtkWidget *label;
-  char display[]="Welcome to GNOME";
   /*Create a window with a title and a default size*/
   window = gtk_application_window_new (app);
   gtk_window_set_application (GTK_WINDOW (window), GTK_APPLICATION (app));
   gtk_window_set_title (GTK_WINDOW (window),"300Tang");
   gtk_window_set_default_size (GTK_WINDOW (window), 200,100);
-   
-  /*Create a label and set its alignment. Setting the line wrap to TRUE makes 
+  gtk_window_set_decorated(GTK_WINDOW(window),TRUE); //set window decoration
+  gtk_window_set_keep_below(GTK_WINDOW(window),TRUE); //keep window below
+  gtk_window_stick(GTK_WINDOW(window)); //stick window, make it appear on all user desktops
+
+  /* Setting the line wrap to TRUE makes 
   the label break lines if the text exceeds the widget's size. When set to 
   FALSE the text gets cut off by the edge of the widget*/
   label = gtk_label_new (content());
@@ -26,7 +28,6 @@ activate (GtkApplication *app,
   gtk_label_set_line_wrap (GTK_LABEL (label), FALSE);
 
   gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (label));
-
   gtk_widget_show_all (GTK_WIDGET (window));
 }
 
