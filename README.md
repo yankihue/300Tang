@@ -1,19 +1,15 @@
 # 300Tang
 
-300Tang is a simple app that periodically scrapes http://www.chinese-poems.com for a poem and displays it to you. If you don't interact with it, it will display a new one after a while. You can choose to save it for later, or copy it to your clipboard. 
+300Tang is a simple app that periodically shows you random [Tang poetry](https://en.wikipedia.org/wiki/Tang_poetry). I wrote this GNOME extension with C for myself to display a different poem periodically on my desktop. I used [this resource](https://www.mandarinchineseschool.com/index.php/resources/104-free-download-300-tang-poems-in-chinese-pinyin-and-english) to download the e-book as pdf, and then extracted plain text from them. 
 
-# Features
+![Screenshot](/screenshot1.png)
 
-You can customize what you want to see: 
 
-Any combination of
-* Chinese characters
-* English translation
-* Pinyin, 
-* Word-by-word(literal) English translation
+If you don't interact with the window, a new poem will be displayed after a while. You can choose to save it for later, or copy it to your clipboard. 
+For more info on GNOME software and extensions you can check out https://developer.gnome.org/. 
 
-is possible.
 
 
 # License
 MIT. For more information check the LICENSE file.
+
