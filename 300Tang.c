@@ -2,79 +2,9 @@
 #include <glib.h>
 #include <ctype.h>
 
+gchar* content();
 
-// Note: This function returns a pointer to a substring of the original string.
-// If the given string was allocated dynamically, the caller must not overwrite
-// that pointer with the returned value, since the original pointer must be
-// deallocated using the same allocator with which it was allocated.  The return
-// value must NOT be deallocated using free() etc.
-char *trim(char *str)
-{
-    size_t len = 0;
-    char *frontp = str;
-    char *endp = NULL;
-
-    if( str == NULL ) { return NULL; }
-    if( str[0] == '\0' ) { return str; }
-
-    len = strlen(str);
-    endp = str + len;
-
-    /* Move the front and back pointers to address the first non-whitespace
-     * characters from each end.
-     */
-    while( isspace((unsigned char) *frontp) ) { ++frontp; }
-    if( endp != frontp )
-    {
-        while( isspace((unsigned char) *(--endp)) && endp != frontp ) {}
-    }
-
-    if( frontp != str && endp == frontp )
-            *str = '\0';
-    else if( str + len - 1 != endp )
-            *(endp + 1) = '\0';
-
-    /* Shift the string so that it starts at str so that if it's dynamically
-     * allocated, we can still free it on the returned pointer.  Note the reuse
-     * of endp to mean the front of the string buffer now.
-     */
-    endp = str;
-    if( frontp != str )
-    {
-            while( *frontp ) { *endp++ = *frontp++; }
-            *endp = '\0';
-    }
-
-    return str;
-}
-
-gchar* content(){
-gchar *contents;
-GError *err = NULL;
-
-g_file_get_contents ("poems.txt", &contents, NULL, &err);
-g_assert ((contents == NULL && err != NULL) || (contents != NULL && err == NULL));
-if (err != NULL)
-  {
-    // Report error to user, and free error
-    g_assert (contents == NULL);
-    fprintf (stderr, "Unable to read file: %s\n", err->message);
-    g_error_free (err);
-  }
-else
-  {
-    // Use file contents
-    g_assert (contents != NULL);
-  }
-contents=trim(contents);  
-return contents;  
-}
-
-
-
-
-
-
+//TODO: GNU style indentation
 static void
 activate (GtkApplication *app,
           gpointer        user_data)
@@ -101,7 +31,6 @@ activate (GtkApplication *app,
 }
 
 
-
 int
 main (int argc, char **argv)
 {
@@ -116,3 +45,57 @@ main (int argc, char **argv)
 }
 
 
+//trim whitespace
+char *trim(char *str)
+{
+    size_t len = 0;
+    char *frontp = str;
+    char *endp = NULL;
+
+    if( str == NULL ) { return NULL; }
+    if( str[0] == '\0' ) { return str; }
+
+    len = strlen(str);
+    endp = str + len;
+    while( isspace((unsigned char) *frontp) ) { ++frontp; }
+    if( endp != frontp )
+    {
+        while( isspace((unsigned char) *(--endp)) && endp != frontp ) {}
+    }
+
+    if( frontp != str && endp == frontp )
+            *str = '\0';
+    else if( str + len - 1 != endp )
+            *(endp + 1) = '\0';
+    endp = str;
+    if( frontp != str )
+    {
+            while( *frontp ) { *endp++ = *frontp++; }
+            *endp = '\0';
+    }
+
+    return str;
+}
+
+//function to read poems.txt and return contents
+gchar* content(){
+gchar *contents;
+GError *err = NULL;
+
+g_file_get_contents ("poems.txt", &contents, NULL, &err);
+g_assert ((contents == NULL && err != NULL) || (contents != NULL && err == NULL));
+if (err != NULL)
+  {
+    // Report error to user, and free error
+    g_assert (contents == NULL);
+    fprintf (stderr, "Unable to read file: %s\n", err->message);
+    g_error_free (err);
+  }
+else
+  {
+    // Use file contents
+    g_assert (contents != NULL);
+  }
+contents=trim(contents);  
+return contents;  
+}
