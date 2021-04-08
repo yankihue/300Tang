@@ -1,6 +1,7 @@
 # 300Tang [WIP]
 
-300Tang is a simple app that periodically shows you random [Tang poetry](https://en.wikipedia.org/wiki/Tang_poetry). I wrote this GNOME extension with C and [GTK+](https://developer.gnome.org/gtk3/stable/gtk-getting-started.html) for myself to display a different poem periodically on my desktop. I used [this resource](https://www.mandarinchineseschool.com/index.php/resources/104-free-download-300-tang-poems-in-chinese-pinyin-and-english) to download the e-book as pdf, and then extracted plain text from it. 
+300Tang is a simple app that periodically shows you random [Tang poetry](https://en.wikipedia.org/wiki/Tang_poetry). I wrote this GNOME extension with C and [GTK+](https://developer.gnome.org/gtk3/stable/gtk-getting-started.html) for myself to display a different poem periodically on my desktop. I used [this resource](https://github.com/xuchunyang/300) to download the 320 poems in json format.
+
 
 ![Screenshot](/screenshot1.png)
 
@@ -23,12 +24,11 @@ and then run it with
 (incomplete)
 
 # TODO
-* Add actual extension files like metadata
+* Add actual extension files like metadata and package with flatpak
 * Reformat the code with GNU style indentation
 * Add random poem selection
 * Add option to save and/or copy to clipboard
-* Add poems
-* Add Pinyin and English 
+* Add Pinyin and English (need to find machine-readable source for this)
 
 # License
 MIT.
